@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackWise — Expense Analytics Platform</title>
+    <meta name="description"
+        content="TrackWise — Industry-grade expense analytics with policy engine, multi-currency, and ERP integrations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ═══ AUTH SCREEN ═══ -->
+    <div id="auth-screen" class="auth-screen" style="display:flex">
+        <div class="auth-bg"></div>
+        <div class="auth-container">
+            <div class="auth-brand">
+                <div class="brand-icon"><span class="material-icons-round">analytics</span></div>
+                <h1>TrackWise</h1>
+                <p>Expense Analytics Platform</p>
+            </div>
+            <div class="auth-card glass">
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form active">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-sub">Sign in to your account</p>
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <div class="input-icon"><span class="material-icons-round">mail</span>
+                            <input type="email" id="login-email" placeholder="you@company.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-icon"><span class="material-icons-round">lock</span>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div id="auth-error" class="alert alert-error" style="display:none"></div>
+                    <button type="submit" class="btn btn-primary btn-full" id="login-btn">
+                        <span>Sign In</span><span class="material-icons-round">arrow_forward</span>
+                    </button>
+                    <p class="auth-toggle">Don't have an account? <a href="#" id="show-register">Create one</a></p>
+                </form>
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form">
+                    <h2>Create Account</h2>
+                    <p class="auth-sub">Join your team on TrackWise</p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-first">First Name</label>
+                            <input type="text" id="reg-first" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-last">Last Name</label>
+                            <input type="text" id="reg-last" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email</label>
+                        <div class="input-icon"><span class="material-icons-round">mail</span>
+                            <input type="email" id="reg-email" placeholder="you@company.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-role">Account Type</label>
+                            <select id="reg-role">
+                                <option value="3">Employee</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Manager</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-dept">Department</label>
+                            <select id="reg-dept">
+                                <option value="1">General</option>
+                                <option value="2">Engineering</option>
+                                <option value="3">Marketing</option>
+                                <option value="4">Sales</option>
+                                <option value="5">Finance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <div class="input-icon"><span class="material-icons-round">lock</span>
+                            <input type="password" id="reg-password" placeholder="Min 8 characters" required
+                                minlength="8">
+                        </div>
+                    </div>
+                    <div id="reg-error" class="alert alert-error" style="display:none"></div>
+                    <button type="submit" class="btn btn-primary btn-full" id="register-btn">
+                        <span>Create Account</span><span class="material-icons-round">person_add</span>
+                    </button>
+                    <p class="auth-toggle">Already have an account? <a href="#" id="show-login">Sign in</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ MAIN APP ═══ -->
+    <div id="app" class="app" style="display:none">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <span class="material-icons-round">analytics</span>
+                <span class="brand-text">TrackWise</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span class="material-icons-round">dashboard</span><span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="expenses">
+                    <span class="material-icons-round">receipt_long</span><span class="nav-text">Expenses</span>
+                </a>
+                <a href="#" class="nav-item" data-page="approvals">
+                    <span class="material-icons-round">check_circle</span><span class="nav-text">Approvals</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="#" class="nav-item" data-page="currency">
+                    <span class="material-icons-round">currency_exchange</span><span class="nav-text">Currency</span>
+                </a>
+                <a href="#" class="nav-item" data-page="notifications">
+                    <span class="material-icons-round">notifications</span><span class="nav-text">Notifications</span>
+                </a>
+
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="avatar" id="user-avatar">JD</div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">John Doe</span>
+                        <span class="user-role" id="user-role">Employee</span>
+                    </div>
+                </div>
+                <button class="btn-icon" id="logout-btn" title="Logout">
+                    <span class="material-icons-round">logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="topbar">
+                <button class="btn-icon mobile-toggle" id="menu-toggle">
+                    <span class="material-icons-round">menu</span>
+                </button>
+                <h2 class="page-title" id="page-title">Dashboard</h2>
+                <div class="topbar-actions">
+                    <button class="btn btn-primary btn-sm" id="new-expense-btn">
+                        <span class="material-icons-round">add</span><span>New Expense</span>
+                    </button>
+                </div>
+            </header>
+            <div class="content-area" id="content-area">
+                <!-- Pages rendered here by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- ═══ NEW EXPENSE MODAL ═══ -->
+    <div class="modal-overlay" id="expense-modal" style="display:none">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h3>Submit New Expense</h3>
+                <button class="btn-icon modal-close" id="modal-close"><span
+                        class="material-icons-round">close</span></button>
+            </div>
+            <form id="expense-form" class="modal-body">
+                <div class="form-row">
+                    <div class="form-group"><label>Title</label>
+                        <input type="text" id="exp-title" placeholder="Business lunch" required>
+                    </div>
+                    <div class="form-group"><label>Vendor</label>
+                        <input type="text" id="exp-vendor" placeholder="Restaurant name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Amount</label>
+                        <input type="number" id="exp-amount" step="0.01" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group"><label>Currency</label>
+                        <select id="exp-currency">
+                            <option>USD</option>
+                            <option>EUR</option>
+                            <option>GBP</option>
+                            <option>INR</option>
+                            <option>JPY</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Category</label>
+                        <select id="exp-category">
+                            <option value="1">Travel</option>
+                            <option value="2">Meals</option>
+                            <option value="3">Supplies</option>
+                            <option value="4">Software</option>
+                            <option value="5">Equipment</option>
+                            <option value="6">Training</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Date</label>
+                        <input type="date" id="exp-date" required>
+                    </div>
+                </div>
+                <div class="form-group"><label>Description</label>
+                    <textarea id="exp-desc" rows="2" placeholder="Brief description..."></textarea>
+                </div>
+                <div class="form-group"><label>Receipt URL</label>
+                    <input type="url" id="exp-receipt" placeholder="https://...">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><span class="material-icons-round">send</span>Submit
+                        Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
